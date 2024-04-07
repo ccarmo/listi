@@ -1,5 +1,6 @@
 package com.dev.listi.infra.db.h2.repository;
 
+import com.dev.listi.app.dto.UserDTO;
 import com.dev.listi.domain.entities.User;
 import com.dev.listi.domain.repository.UserRepository;
 import com.dev.listi.infra.db.h2.mapper.UserMapper;
@@ -19,8 +20,10 @@ public class UserRepositoryH2 implements UserRepository {
     @Inject
     UserMapper userMapper;
     @Override
-    public Optional<User> getUser(String idUser) {
-        return Optional.of(userMapper.userModelToUser(userRepositoryPanache.findById(idUser)));
+    public Optional<UserDTO> getUser(String email) {
+        UserModel userModel = userRepositoryPanache.find("email = ?1", email).firstResult();
+        UserDTO userDTO = userMapper.userModelToUserDTO(userModel);
+        return Optional.of(userDTO);
     }
 
     @Override

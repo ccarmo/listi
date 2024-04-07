@@ -1,12 +1,21 @@
 package com.dev.listi.infra.db.h2.model;
 
+import com.dev.listi.domain.vo.Email;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class UserModel {
 
     private static final String TABLE_NAME_USER = "users";
+
+    @Id
+    private String id;
+    private String name;
+
+    private String email;
+
 
     public String getId() {
         return id;
@@ -24,7 +33,12 @@ public class UserModel {
         this.name = name;
     }
 
-    @Id
-    private String id;
-    private String name;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
