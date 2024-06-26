@@ -1,6 +1,6 @@
 package com.dev.listi.app.resource;
 
-import com.dev.listi.app.services.api.UserService;
+import com.dev.listi.app.services.UserService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,8 +15,8 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create() {
-        return userService.createUser();
+    public Response create(@QueryParam("name") String name) {
+        return userService.createUser(name);
     }
 
     @GET

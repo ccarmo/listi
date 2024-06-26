@@ -1,4 +1,4 @@
-package com.dev.listi.exceptions;
+package com.dev.listi.domain.exceptions;
 
 public class AccountNotFoundException extends RuntimeException {
 

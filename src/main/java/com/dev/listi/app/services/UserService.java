@@ -1,9 +1,13 @@
-package com.dev.listi.app.services.api;
+package com.dev.listi.app.services;
 
 import com.dev.listi.app.dto.UserDTO;
+import com.dev.listi.app.dto.UserRecord;
 import com.dev.listi.app.usecases.CreateUserUseCase;
 import com.dev.listi.app.usecases.GetUserUseCase;
+import com.dev.listi.app.usecases.impl.CreateUserImpl;
+import com.dev.listi.app.usecases.impl.GetUserImpl;
 import com.dev.listi.domain.entities.User;
+import com.dev.listi.domain.exceptions.UserNotFoundException;
 import com.dev.listi.domain.vo.Email;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -16,21 +20,19 @@ import java.util.Optional;
 @ApplicationScoped
 public class UserService {
     @Inject
-    CreateUserUseCase createUserUseCase;
+    private GetUserImpl getUserImpl;
 
     @Inject
-    GetUserUseCase getUserUseCase;
+    private CreateUserImpl createUserImpl;
 
+    public Response createUser(String name) {
 
-    public Response createUser() {
-        Email email = new Email("carmo@teste.com");
-        User user = new User("Carmo", email);
-        Optional<User> userOptional = createUserUseCase.createUser(user);
-        return Response.ok(userOptional.get()).build();
+        Optional<UserRecord> userRecord = createUserImpl.createUser(name);
+        return Response.ok(userRecord.get()).build();
     }
 
     public Response getUser(@QueryParam("email") String email) {
-        Optional<UserDTO> user = getUserUseCase.getUser(email);
+        Optional<UserRecord> user = getUserImpl.getUser(email);
         return Response.ok(user.get()).build();
     }
 }

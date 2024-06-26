@@ -2,7 +2,7 @@
 package com.dev.listi.domain.vo;
 
 
-import com.dev.listi.exceptions.AddressNotValidException;
+import com.dev.listi.domain.exceptions.AddressNotValidException;
 
 public class Address {
 

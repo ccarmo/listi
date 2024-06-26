@@ -1,8 +1,7 @@
 package com.dev.listi.domain.vo;
 
 
-
-import com.dev.listi.exceptions.EmailNotValidException;
+import com.dev.listi.domain.exceptions.EmailNotValidException;
 
 import java.util.Objects;
 

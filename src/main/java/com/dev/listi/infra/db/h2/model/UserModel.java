@@ -1,9 +1,8 @@
 package com.dev.listi.infra.db.h2.model;
 
-import com.dev.listi.domain.vo.Email;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class UserModel {

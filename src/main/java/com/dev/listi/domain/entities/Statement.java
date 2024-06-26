@@ -1,7 +1,5 @@
 package com.dev.listi.domain.entities;
 
-import java.util.UUID;
-
 public class Statement {
 
     private String idStatement;
@@ -9,7 +7,6 @@ public class Statement {
     private Transaction transaction;
 
     public Statement(Transaction transaction) {
-        this.idStatement = UUID.randomUUID().toString();
         this.transaction = transaction;
     }
 

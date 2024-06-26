@@ -5,6 +5,7 @@ import com.dev.listi.domain.entities.Account;
 import com.dev.listi.domain.repository.AccountRepository;
 import com.dev.listi.infra.db.h2.mapper.AccountMapper;
 import com.dev.listi.infra.db.h2.model.AccountModel;
+import com.dev.listi.infra.db.h2.repository.panache.AccountRepositoryPanache;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -22,11 +23,17 @@ public class AccountRepositoryH2 implements AccountRepository {
     AccountRepositoryPanache accountRepositoryPanache;
 
     @Override
-    public Optional<AccountDTO> getAccount(String accountNumber) {
-        AccountModel accountModel = accountRepositoryPanache.find("account = ?1", accountNumber).firstResult();
-        AccountDTO accountDTO = accountMapper.accountModelToAccountDTO(accountModel);
-        return Optional.ofNullable(accountDTO);
+    public Optional<Account> getAccountNumber(String accountNumber) {
+        Optional<AccountModel> accountModel = accountRepositoryPanache.findByAccountNumber(accountNumber);
+        Account account = accountMapper.accountModelToAccount(accountModel.get());
+        return Optional.of(account);
     }
+
+    @Override
+    public Optional<Account> updatedAccount(Account account) {
+        return Optional.empty();
+    }
+
 
     @Override
     public Optional<Account> createAccount(Account account) {
