@@ -2,12 +2,7 @@ package com.dev.listi.app.usecases.impl;
 
 
 
-import com.dev.listi.app.dto.AccountRecord;
-import com.dev.listi.app.usecases.GetAccount;
-import com.dev.listi.domain.entities.Account;
-import com.dev.listi.domain.exceptions.AccountNotFoundException;
-import com.dev.listi.domain.repository.AccountRepository;
-import com.dev.listi.infra.db.h2.mapper.AccountMapper;
+import com.dev.listi.usermanagement.exceptions.AccountNotFoundException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 

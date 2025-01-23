@@ -1,7 +1,6 @@
 package com.dev.listi.app.usecases;
 
-import com.dev.listi.domain.entities.User;
-import jakarta.enterprise.context.ApplicationScoped;
+import com.dev.listi.usermanagement.domain.User;
 
 import java.util.Optional;
 

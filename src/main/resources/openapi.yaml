@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  title: API de Gerenciamento de Ordens de Serviço
+  description: Sistema básico para criação, gerenciamento e compartilhamento de ordens de serviço.
+  version: 1.0.0
+servers:
+  - url: https://api.minhasos.com
+    description: Servidor de Produção
+  - url: http://localhost:8080
+    description: Servidor Local
+paths:
+  /os:
+    post:
+      summary: Criar uma nova ordem de serviço (OS)
+      description: Cria uma OS com informações do cliente, descrição e observações.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOSRequest'
+      responses:
+        '201':
+          description: Ordem de serviço criada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOSResponse'
+    get:
+      summary: Listar ordens de serviço
+      description: Lista todas as OS com filtros por status e busca por número ou cliente.
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [Aberta, Em andamento, Concluída, Cancelada]
+            description: Filtro pelo status da OS.
+        - in: query
+          name: busca
+          schema:
+            type: string
+            description: Busca pelo número ou nome do cliente.
+      responses:
+        '200':
+          description: Lista de ordens de serviço.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOSResponse'
+  /os/{osId}:
+    get:
+      summary: Detalhar uma OS
+      description: Retorna informações detalhadas de uma OS pelo ID.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+
+      operationId: osOsIdGet
+      responses:
+        '200':
+          description: Detalhes da OS.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OSDetailsResponse'
+    patch:
+      summary: Atualizar status ou informações de uma OS
+      description: Atualiza status, descrição ou observações de uma OS específica.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+      operationId: osOsIdPatch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOSRequest'
+      responses:
+        '200':
+          description: OS atualizada com sucesso.
+    delete:
+      summary: Excluir uma OS
+      description: Exclui uma OS pelo ID.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+      operationId: osOsIdDelete
+      responses:
+        '204':
+          description: OS excluída com sucesso.
+  /os/{osId}/share:
+    get:
+      summary: Gerar links para acompanhamento e gerenciamento
+      description: Retorna os links únicos de gerenciamento e acompanhamento para a OS.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+      operationId: osOsIdShareGet
+      responses:
+        '200':
+          description: Links gerados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLinksResponse'
+  /os/{osId}/email:
+    post:
+      summary: Enviar link ao cliente por email
+      description: Envia o link de acompanhamento para o cliente.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+      operationId: osOsIdEmailPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailRequest'
+      responses:
+        '200':
+          description: Email enviado com sucesso.
+  /os/{osId}/export:
+    get:
+      summary: Exportar OS para PDF
+      description: Gera um PDF da OS para download ou compartilhamento.
+      parameters:
+        - in: path
+          name: osId
+          required: true
+          schema:
+            type: integer
+          description: ID da OS.
+      operationId: osOsIdExportGet
+      responses:
+        '200':
+          description: PDF gerado com sucesso.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    CreateOSRequest:
+      type: object
+      properties:
+        idCliente:
+          type: integer
+        descricao:
+          type: string
+        observacoes:
+          type: string
+    CreateOSResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        linkGerencial:
+          type: string
+        linkAcompanhamento:
+          type: string
+    ListOSResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/OSDetailsResponse'
+    OSDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        idCliente:
+          type: integer
+        descricao:
+          type: string
+        status:
+          type: string
+          enum: [Aberta, Em andamento, Concluída, Cancelada]
+        dataCriacao:
+          type: string
+          format: date-time
+        observacoes:
+          type: string
+    UpdateOSRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [Aberta, Em andamento, Concluída, Cancelada]
+        descricao:
+          type: string
+        observacoes:
+          type: string
+    ShareLinksResponse:
+      type: object
+      properties:
+        linkGerencial:
+          type: string
+        linkAcompanhamento:
+          type: string
+    SendEmailRequest:
+      type: object
+      properties:
+        emailCliente:
+          type: string
+        mensagem:
+          type: string

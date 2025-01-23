@@ -1,8 +1,7 @@
 package com.dev.listi.domain;
 
 
-import com.dev.listi.domain.entities.Account;
-import com.dev.listi.domain.entities.TypeAccount;
+import com.dev.listi.usermanagement.domain.entities.TypeAccount;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

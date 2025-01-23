@@ -1,11 +1,6 @@
 package com.dev.listi.app.usecases.impl;
 
 
-import com.dev.listi.app.dto.AccountRecord;
-import com.dev.listi.app.usecases.CreateAccount;
-import com.dev.listi.domain.entities.Account;
-import com.dev.listi.domain.repository.AccountRepository;
-import com.dev.listi.infra.db.h2.mapper.AccountMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
