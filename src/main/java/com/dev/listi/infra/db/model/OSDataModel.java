@@ -1,6 +1,6 @@
-package com.dev.listi.ordermanagement.infra.model;
+package com.dev.listi.infra.db.model;
 
-import com.dev.listi.clientmanagement.infra.model.ClientModel;
+import com.dev.listi.domain.vo.StatusOS;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 

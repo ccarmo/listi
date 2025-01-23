@@ -1,4 +1,4 @@
-package com.dev.listi.ordermanagement.domain.vo;
+package com.dev.listi.domain.vo;
 
 public class ContactNumber {
 

@@ -162,6 +162,34 @@ paths:
               schema:
                 type: string
                 format: binary
+  /users:
+    post:
+      summary: Criar usuário
+      description: Criar um novo usuário usando o parâmetro "name" na query.
+      parameters:
+        - in: query
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Nome do usuário a ser criado.
+      responses:
+        '201':
+          description: Usuário criado com sucesso.
+    
+    get:
+      summary: Obter usuário
+      description: Retorna dados de um usuário usando o parâmetro "email" na query.
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+          description: Email do usuário a ser buscado.
+      responses:
+        '200':
+          description: Usuário encontrado com sucesso.
 components:
   schemas:
     CreateOSRequest:

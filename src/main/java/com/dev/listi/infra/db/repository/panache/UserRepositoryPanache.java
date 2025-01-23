@@ -1,5 +1,6 @@
-package com.dev.listi.usermanagement.infra.model;
+package com.dev.listi.infra.db.repository.panache;
 
+import com.dev.listi.infra.db.model.UserModel;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 

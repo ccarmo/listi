@@ -1,4 +1,4 @@
-package com.dev.listi.usermanagement.domain.entities;
+package com.dev.listi.domain.vo;
 
 public enum TypeAccount {
     CURRENT_ACCOUNT;

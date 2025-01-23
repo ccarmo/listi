@@ -1,4 +1,4 @@
-package com.dev.listi.ordermanagement.application.dto;
+package com.dev.listi.app.dto;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 

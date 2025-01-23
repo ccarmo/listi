@@ -1,4 +1,4 @@
-package com.dev.listi.shared;
+package com.dev.listi.domain.vo;
 
 public enum StatusOS {
     ABERTA,

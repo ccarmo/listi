@@ -1,7 +1,7 @@
 package com.dev.listi.app.resource;
 
 import com.dev.listi.app.dto.*;
-import com.dev.listi.ordermanagement.application.dto.CreateOSRequest;
+import com.dev.listi.app.dto.CreateOSRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

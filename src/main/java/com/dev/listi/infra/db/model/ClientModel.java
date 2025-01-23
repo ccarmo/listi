@@ -1,6 +1,5 @@
-package com.dev.listi.clientmanagement.infra.model;
+package com.dev.listi.infra.db.model;
 
-import com.dev.listi.ordermanagement.infra.model.OSDataModel;
 import jakarta.persistence.*;
 
 import java.util.List;

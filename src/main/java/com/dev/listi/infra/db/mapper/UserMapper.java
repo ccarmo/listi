@@ -1,8 +1,9 @@
-package com.dev.listi.usermanagement.mapper;
+package com.dev.listi.infra.db.mapper;
 
-import com.dev.listi.usermanagement.domain.User;
-import com.dev.listi.ordermanagement.domain.vo.Email;
-import com.dev.listi.usermanagement.infra.model.UserModel;
+import com.dev.listi.app.dto.UserRecord;
+import com.dev.listi.domain.entities.User;
+import com.dev.listi.domain.vo.Email;
+import com.dev.listi.infra.db.model.UserModel;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "cdi")

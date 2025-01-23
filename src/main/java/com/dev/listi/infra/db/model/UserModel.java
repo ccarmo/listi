@@ -1,4 +1,4 @@
-package com.dev.listi.usermanagement.infra.model;
+package com.dev.listi.infra.db.model;
 
 
 import jakarta.persistence.*;

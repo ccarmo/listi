@@ -1,5 +1,6 @@
-package com.dev.listi.usermanagement.usecases;
+package com.dev.listi.service;
 
+import com.dev.listi.app.dto.UserRecord;
 import com.dev.listi.app.usecases.impl.CreateUserImpl;
 import com.dev.listi.app.usecases.impl.GetUserImpl;
 import jakarta.enterprise.context.ApplicationScoped;

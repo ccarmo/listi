@@ -1,7 +1,7 @@
-package com.dev.listi.ordermanagement.domain.vo;
+package com.dev.listi.domain.vo;
 
 
-import com.dev.listi.usermanagement.exceptions.EmailNotValidException;
+import com.dev.listi.domain.exceptions.EmailNotValidException;
 
 import java.util.Objects;
 

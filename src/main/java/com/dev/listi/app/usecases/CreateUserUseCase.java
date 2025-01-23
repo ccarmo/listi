@@ -1,6 +1,6 @@
 package com.dev.listi.app.usecases;
 
-import com.dev.listi.usermanagement.domain.User;
+import com.dev.listi.domain.entities.User;
 
 import java.util.Optional;
 

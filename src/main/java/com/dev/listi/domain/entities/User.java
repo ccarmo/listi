@@ -1,7 +1,7 @@
-package com.dev.listi.usermanagement.domain;
+package com.dev.listi.domain.entities;
 
 
-import com.dev.listi.ordermanagement.domain.vo.Email;
+import com.dev.listi.domain.vo.Email;
 
 import java.util.UUID;
 

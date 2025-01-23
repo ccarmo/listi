@@ -1,8 +1,10 @@
-package com.dev.listi.usermanagement.infra.model;
+package com.dev.listi.infra.db.repository;
 
-import com.dev.listi.usermanagement.domain.User;
-import com.dev.listi.ordermanagement.domain.vo.Email;
-import com.dev.listi.usermanagement.mapper.UserMapper;
+import com.dev.listi.domain.entities.User;
+import com.dev.listi.domain.vo.Email;
+import com.dev.listi.infra.db.model.UserModel;
+import com.dev.listi.infra.db.repository.panache.UserRepositoryPanache;
+import com.dev.listi.infra.db.mapper.UserMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 @ApplicationScoped
 @Transactional
-public class UserRepository implements com.dev.listi.usermanagement.domain.repository.UserRepository {
+public class UserRepository implements com.dev.listi.domain.repository.UserRepository {
 
     @Inject
     UserRepositoryPanache userRepositoryPanache;

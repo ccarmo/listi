@@ -1,6 +1,6 @@
 package com.dev.listi.app.resource;
 
-import com.dev.listi.usermanagement.usecases.UserService;
+import com.dev.listi.service.UserService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

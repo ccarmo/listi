@@ -1,8 +1,8 @@
 
-package com.dev.listi.ordermanagement.domain.vo;
+package com.dev.listi.domain.vo;
 
 
-import com.dev.listi.usermanagement.exceptions.AddressNotValidException;
+import com.dev.listi.domain.exceptions.AddressNotValidException;
 
 public class Address {
 
