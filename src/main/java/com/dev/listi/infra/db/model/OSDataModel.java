@@ -12,52 +12,71 @@ public class OSDataModel {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String codigo;
+    private String code;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private ClientModel cliente;
+    @JoinColumn(name = "client_id", nullable = false)
+    private ClientModel client;
 
     @Column(nullable = false)
-    private String descricao;
+    private String description;
 
     @Column(nullable = false)
-    private LocalDateTime dataCriacao;
+    private LocalDateTime creationDate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusOS status;
 
-    private String observacoes;
+    private String notes;
 
     @Column(nullable = false, unique = true)
-    private String linkGerencial;
+    private String managementLink;
 
     @Column(nullable = false, unique = true)
-    private String linkAcompanhamento;
+    private String trackingLink;
 
-    public String getLinkAcompanhamento() {
-        return linkAcompanhamento;
+
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
-    public void setLinkAcompanhamento(String linkAcompanhamento) {
-        this.linkAcompanhamento = linkAcompanhamento;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getLinkGerencial() {
-        return linkGerencial;
+    public String getCode() {
+        return code;
     }
 
-    public void setLinkGerencial(String linkGerencial) {
-        this.linkGerencial = linkGerencial;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getObservacoes() {
-        return observacoes;
+    public ClientModel getClient() {
+        return client;
     }
 
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+    public void setClient(ClientModel client) {
+        this.client = client;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public StatusOS getStatus() {
@@ -68,44 +87,27 @@ public class OSDataModel {
         this.status = status;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getManagementLink() {
+        return managementLink;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setManagementLink(String managementLink) {
+        this.managementLink = managementLink;
     }
 
-    public ClientModel getCliente() {
-        return cliente;
+    public String getTrackingLink() {
+        return trackingLink;
     }
 
-    public void setCliente(ClientModel cliente) {
-        this.cliente = cliente;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setTrackingLink(String trackingLink) {
+        this.trackingLink = trackingLink;
     }
 }
-

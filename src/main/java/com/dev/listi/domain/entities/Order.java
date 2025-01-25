@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Order {
+
     private Long id;
     private String orderCode;
     private String description;

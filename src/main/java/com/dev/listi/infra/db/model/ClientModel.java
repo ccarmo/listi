@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "clients")
 public class ClientModel {
 
     @Id
@@ -21,8 +21,22 @@ public class ClientModel {
     @Column(nullable = false, unique = true)
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<OSDataModel> ordensDeServico;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserModel userModel;
+
+
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
 
     public List<OSDataModel> getOrdensDeServico() {
         return ordensDeServico;

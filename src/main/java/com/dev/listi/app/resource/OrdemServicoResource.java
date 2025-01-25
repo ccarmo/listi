@@ -2,6 +2,8 @@ package com.dev.listi.app.resource;
 
 import com.dev.listi.app.dto.*;
 import com.dev.listi.app.dto.CreateOSRequest;
+import com.dev.listi.app.usecases.CreateOrder;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -15,15 +17,16 @@ import java.util.List;
 @Tag(name = "Ordem de Serviço", description = "Operações relacionadas às ordens de serviço.")
 public class OrdemServicoResource {
 
-    // Endpoint para Criar uma nova Ordem de Serviço
+    @Inject
+    CreateOrder createOrder;
+
     @POST
     @Operation(summary = "Criar uma nova ordem de serviço", description = "Cria uma OS com informações do cliente, descrição e observações.")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response criarOrdemServico(CreateOSRequest request) {
-        // Lógica para criar a OS
-        CreateOSResponse response = new CreateOSResponse(); // Exemplo de resposta
-        return Response.status(Response.Status.CREATED).entity(response).build();
+        createOrder.execute(request);
+        return Response.status(Response.Status.CREATED).entity(request).build();
     }
 
     // Endpoint para Listar as Ordens de Serviço

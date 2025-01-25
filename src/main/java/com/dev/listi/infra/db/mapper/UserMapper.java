@@ -9,14 +9,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "cdi")
 public interface UserMapper {
 
-    @Mapping(source = "userModel.id", target = "idUser" )
     @Mapping(source = "userModel.name", target = "name" )
     @Mapping(source = "userModel.email", target = "email", qualifiedByName = "mapStringToEmail")
     User userModelToUser(UserModel userModel);
 
 
     @Mapping(source = "user.name", target = "name")
-    @Mapping(source = "user.idUser", target = "id")
     @Mapping(source = "user.email", target = "email", qualifiedByName = "mapEmailToString")
     UserModel userToUserModel(User user);
 

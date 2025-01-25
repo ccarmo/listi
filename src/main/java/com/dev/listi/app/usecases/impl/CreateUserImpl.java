@@ -21,6 +21,6 @@ public class CreateUserImpl implements CreateUser {
     @Override
     public Optional<UserRecord> createUser(String name) {
         Optional<User> user = userRepository.createUser(name);
-        return  Optional.of(userMapper.userToUserDTO(user.get()));
+        return user.map(value -> userMapper.userToUserDTO(value));
     }
 }
