@@ -5,6 +5,7 @@ import com.dev.listi.app.usecases.CreateUser;
 import com.dev.listi.domain.entities.User;
 import com.dev.listi.domain.repository.UserRepository;
 import com.dev.listi.infra.db.mapper.UserMapper;
+import com.dev.listi.infra.db.model.UserModel;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -20,7 +21,9 @@ public class CreateUserImpl implements CreateUser {
 
     @Override
     public Optional<UserRecord> createUser(String name) {
-        Optional<User> user = userRepository.createUser(name);
-        return user.map(value -> userMapper.userToUserDTO(value));
+        Optional<UserModel> userModel = userRepository.createUser(name);
+        User user = userMapper.userModelToUser(userModel.get());
+        UserRecord userRecord = userMapper.userToUserDTO(user);
+        return Optional.of(userRecord);
     }
 }

@@ -8,6 +8,7 @@ import com.dev.listi.domain.entities.User;
 import com.dev.listi.domain.exceptions.UserNotFoundException;
 import com.dev.listi.domain.repository.UserRepository;
 import com.dev.listi.infra.db.mapper.UserMapper;
+import com.dev.listi.infra.db.model.UserModel;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -24,11 +25,13 @@ public class GetUserImpl implements GetUser {
 
     @Override
     public Optional<UserRecord> getUser(String idUser) {
-        Optional<User> user = userRepository.getUser(idUser);
-        UserRecord userRecord = userMapper.userToUserDTO(user.get());
-        if(user.isEmpty()) {
+        Optional<UserModel> userModel = userRepository.getUser(idUser);
+
+        if(userModel.isEmpty()) {
             throw new UserNotFoundException("User not found for number: " + idUser);
         } else {
+            User user = userMapper.userModelToUser(userModel.get());
+            UserRecord userRecord = userMapper.userToUserDTO(user);
             return Optional.of(userRecord);
         }
     }

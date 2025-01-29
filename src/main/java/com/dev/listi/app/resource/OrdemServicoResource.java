@@ -4,6 +4,7 @@ import com.dev.listi.app.dto.*;
 import com.dev.listi.app.dto.CreateOSRequest;
 import com.dev.listi.app.usecases.CreateOrder;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -24,6 +25,7 @@ public class OrdemServicoResource {
     @Operation(summary = "Criar uma nova ordem de serviço", description = "Cria uma OS com informações do cliente, descrição e observações.")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response criarOrdemServico(CreateOSRequest request) {
         createOrder.execute(request);
         return Response.status(Response.Status.CREATED).entity(request).build();

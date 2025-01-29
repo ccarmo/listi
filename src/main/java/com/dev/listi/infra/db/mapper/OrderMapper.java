@@ -9,9 +9,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "cdi")
 public interface OrderMapper {
 
-    @Mapping(source = "order.id", target = "id")
+
     @Mapping(source = "order.orderCode", target = "code")
-    @Mapping(source = "order.clientId", target = "client.id")
     @Mapping(source = "order.description", target = "description")
     @Mapping(source = "order.creationDate", target = "creationDate")
     @Mapping(source = "order.status", target = "status")
@@ -27,7 +26,6 @@ public interface OrderMapper {
     @Mapping(source = "osDataModel.notes", target = "notes")
     Order osDataModelToOrder(OSDataModel osDataModel);
 
-    @Mapping(source = "request.idClient", target = "id")
     @Mapping(source = "request.description", target = "description")
     @Mapping(source = "request.notes", target = "notes")
     Order createOSRequestToOrder(CreateOSRequest request);

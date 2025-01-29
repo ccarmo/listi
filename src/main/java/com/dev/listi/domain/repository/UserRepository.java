@@ -2,23 +2,28 @@ package com.dev.listi.domain.repository;
 
 
 import com.dev.listi.domain.entities.User;
+import com.dev.listi.infra.db.model.UserModel;
 
 import java.util.Optional;
 
 public interface UserRepository {
 
-    Optional<User> getUser(String idUser);
+    Optional<UserModel> getUser(String idUser);
 
-    Optional<User> createUser(String name);
+    Optional<UserModel> getUserById(String idUser);
 
-    Optional<User> updateUser(String idUser, String name);
+    Optional<UserModel> createUser(String name);
 
-    Optional<User> deleteUser(String idUser);
+    Optional<UserModel> findByEmail(String email);
 
-    Optional<User> listUsers();
+    Optional<UserModel> updateUser(String idUser, String name);
 
-    Optional<User> listUser(String idUser);
+    Optional<UserModel> deleteUser(String idUser);
 
-    Optional<User> listUserByName(String name);
+    Optional<UserModel> listUsers();
+
+    Optional<UserModel> listUser(String idUser);
+
+    Optional<UserModel> listUserByName(String name);
 
 }

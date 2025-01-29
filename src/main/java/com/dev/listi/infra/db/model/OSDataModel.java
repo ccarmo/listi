@@ -11,32 +11,38 @@ public class OSDataModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String code;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserModel user;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_id", nullable = false)
     private ClientModel client;
 
-    @Column(nullable = false)
+
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime creationDate;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusOS status;
 
     private String notes;
 
-    @Column(nullable = false, unique = true)
     private String managementLink;
 
-    @Column(nullable = false, unique = true)
     private String trackingLink;
 
+    public UserModel getUser() {
+        return user;
+    }
 
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
 
     // Getters and Setters
     public Long getId() {

@@ -1,18 +1,23 @@
 package com.dev.listi.domain.repository;
 
+import com.dev.listi.domain.entities.Client;
+import com.dev.listi.domain.entities.User;
 import com.dev.listi.domain.entities.Order;
 import com.dev.listi.domain.vo.StatusOS;
+import com.dev.listi.infra.db.model.ClientModel;
+import com.dev.listi.infra.db.model.OSDataModel;
+import com.dev.listi.infra.db.model.UserModel;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface OrdemServiceRepository {
-    Optional<Order> createOrder(Order order);
-    Optional<Order> changeOrderStatus(Long orderId, StatusOS status);
-    Optional<Order> findOrderById(Long orderId);
-    Optional<Order> deleteOrder(Long orderId);
+    void createOrder(Order order, UserModel userModel, ClientModel clientModel);
+    Optional<OSDataModel> changeOrderStatus(Long orderId, StatusOS status);
+    Optional<OSDataModel> findOrderById(Long orderId);
 
     // Métodos adicionais
-    List<Order> findAll();
-    List<Order> findByStatus(StatusOS status);
-    Optional<Order> updateOrder(Order order);
+    List<OSDataModel> findAll();
+    List<OSDataModel> findByStatus(StatusOS status);
+    Optional<OSDataModel> updateOrder(Order order);
 }

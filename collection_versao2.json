@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "API de Gerenciamento de Ordens de Serviço",
+    "description": "Sistema básico para criação, gerenciamento e compartilhamento de ordens de serviço.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "/os",
+      "item": [
+        {
+          "name": "Criar uma nova ordem de serviço (OS)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/os",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idCliente\": 1,\n  \"descricao\": \"Instalação de software\",\n  \"observacoes\": \"Prioridade alta\"\n}"
+            },
+            "description": "Cria uma OS com informações do cliente, descrição e observações."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar ordens de serviço",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/os?status={{status}}&busca={{busca}}",
+            "description": "Lista todas as OS com filtros por status e busca por número ou cliente."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/clients",
+      "item": [
+        {
+          "name": "Criar um novo cliente",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/clients",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"João Silva\",\n  \"email\": \"joao.silva@email.com\"\n}"
+            },
+            "description": "Cria um novo cliente."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/os/{osId}",
+      "item": [
+        {
+          "name": "Detalhar uma OS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/os/{{osId}}",
+            "description": "Retorna informações detalhadas de uma OS pelo ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar status ou informações de uma OS",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/os/{{osId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Concluída\",\n  \"descricao\": \"Serviço concluído com sucesso\",\n  \"observacoes\": \"Cliente satisfeito\"\n}"
+            },
+            "description": "Atualiza status, descrição ou observações de uma OS específica."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir uma OS",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/os/{{osId}}",
+            "description": "Exclui uma OS pelo ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/os/{osId}/share",
+      "item": [
+        {
+          "name": "Gerar links para acompanhamento e gerenciamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/os/{{osId}}/share",
+            "description": "Retorna os links únicos de gerenciamento e acompanhamento para a OS."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/os/{osId}/email",
+      "item": [
+        {
+          "name": "Enviar link ao cliente por email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/os/{{osId}}/email",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailCliente\": \"cliente@email.com\",\n  \"mensagem\": \"Segue o link para acompanhamento da sua OS.\"\n}"
+            },
+            "description": "Envia o link de acompanhamento para o cliente."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

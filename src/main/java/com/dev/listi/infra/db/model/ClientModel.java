@@ -13,22 +13,20 @@ public class ClientModel {
     private Long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String telefone;
+    @Column(unique = true)
+    private String phone;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<OSDataModel> ordensDeServico;
+    private List<OSDataModel> serviceOrders;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel userModel;
-
-
 
     public UserModel getUserModel() {
         return userModel;
@@ -38,20 +36,20 @@ public class ClientModel {
         this.userModel = userModel;
     }
 
-    public List<OSDataModel> getOrdensDeServico() {
-        return ordensDeServico;
+    public List<OSDataModel> getServiceOrders() {
+        return serviceOrders;
     }
 
-    public void setOrdensDeServico(List<OSDataModel> ordensDeServico) {
-        this.ordensDeServico = ordensDeServico;
+    public void setServiceOrders(List<OSDataModel> serviceOrders) {
+        this.serviceOrders = serviceOrders;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -62,12 +60,12 @@ public class ClientModel {
         this.email = email;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {

@@ -10,7 +10,7 @@ import java.util.Optional;
 @ApplicationScoped
 public class UserRepositoryPanache implements PanacheRepository<UserModel> {
     public Optional<UserModel> findByName(String username) {
-        return find("username", username).firstResultOptional();
+        return find("name", username).firstResultOptional();
     }
 
     public Optional<UserModel> findByEmail(String email) {

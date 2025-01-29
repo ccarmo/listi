@@ -4,6 +4,7 @@ import com.dev.listi.domain.vo.StatusOS;
 import com.dev.listi.infra.db.model.OSDataModel;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,7 @@ public class OrderServiceRepositoryPanache implements PanacheRepository<OSDataMo
     //crie metodos para manipular a classe OrderServiceRepositoryImpl
 
     public Optional<OSDataModel> createOrder(OSDataModel osDataModel) {
-        persist(osDataModel);
+        persistAndFlush(osDataModel);
         return Optional.of(osDataModel);
     }
 

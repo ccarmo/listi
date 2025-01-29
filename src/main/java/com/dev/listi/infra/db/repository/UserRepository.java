@@ -12,7 +12,6 @@ import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @ApplicationScoped
-@Transactional
 public class UserRepository implements com.dev.listi.domain.repository.UserRepository {
 
     @Inject
@@ -22,45 +21,57 @@ public class UserRepository implements com.dev.listi.domain.repository.UserRepos
     UserMapper userMapper;
 
     @Override
-    public Optional<User> getUser(String name) {
-        Optional<UserModel> userModelOptional = userRepositoryPanache.findByName(name);
-        User user = userMapper.userModelToUser(userModelOptional.get());
-        return Optional.of(user);
+    @Transactional
+    public Optional<UserModel> getUser(String name) {
+        return userRepositoryPanache.findByName(name);
+    }
+
+    @Override
+    @Transactional
+    public Optional<UserModel> getUserById(String idUser) {
+        return userRepositoryPanache.findByIdOptional(Long.valueOf(idUser));
     }
 
 
 
     @Override
-    public Optional<User> createUser(String name) {
+    @Transactional
+    public Optional<UserModel> createUser(String name) {
         Email email = new Email("teste@teste.com");
         User user = new User(name, email);
         UserModel userModel = userMapper.userToUserModel(user);
         userRepositoryPanache.persist(userModel);
-        return Optional.of(user);
+        return Optional.of(userModel);
     }
 
     @Override
-    public Optional<User> updateUser(String idUser, String name) {
+    public Optional<UserModel> findByEmail(String email) {
+        Optional<UserModel> userModel = userRepositoryPanache.findByEmail(email);
+        return userModel;
+    }
+
+    @Override
+    public Optional<UserModel> updateUser(String idUser, String name) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> deleteUser(String idUser) {
+    public Optional<UserModel> deleteUser(String idUser) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> listUsers() {
+    public Optional<UserModel> listUsers() {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> listUser(String idUser) {
+    public Optional<UserModel> listUser(String idUser) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> listUserByName(String name) {
+    public Optional<UserModel> listUserByName(String name) {
         return Optional.empty();
     }
 }

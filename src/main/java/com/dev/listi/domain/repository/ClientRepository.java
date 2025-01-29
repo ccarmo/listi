@@ -1,12 +1,15 @@
 package com.dev.listi.domain.repository;
 
 import com.dev.listi.domain.entities.Client;
+import com.dev.listi.domain.entities.User;
+import com.dev.listi.infra.db.model.ClientModel;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface ClientRepository {
-    Optional<Client> save(Client client);
-    Optional<Client> findById(Long id);
+    void save(Client client, User user);
+    Optional<ClientModel> findById(Long id);
     List<Client> findAll();
     void delete(Long id);
     Optional<Client> update(Client client);
@@ -14,5 +17,5 @@ public interface ClientRepository {
     // Métodos adicionais
     Optional<Client> deleteClient(Long id);
     List<Client> findByName(String name);
-    Optional<Client> findByEmail(String email);
+    Optional<ClientModel> findByEmail(String email);
 }

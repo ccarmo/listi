@@ -12,6 +12,26 @@ public class Client {
     private ContactNumber contactNumber;
     private Address address;
 
+
+
+    public Client() {
+    }
+
+    public Client(String name, String cpf, Email email, ContactNumber contactNumber, Address address, User user) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.contactNumber = contactNumber;
+        this.address = address;
+
+    }
+
+    public Client(String name, String email) {
+        this.name = name;
+        this.email = new Email(email);
+    }
+
+
     public String getName() {
         return name;
     }

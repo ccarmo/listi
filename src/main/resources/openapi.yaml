@@ -48,6 +48,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListOSResponse'
+  /clients:
+    post:
+      summary: Create a new client
+      operationId: createClient
+      requestBody:
+        description: Client object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientRequest'
+      responses:
+        '201':
+          description: Client created successfully
   /os/{osId}:
     get:
       summary: Detalhar uma OS
@@ -255,3 +269,13 @@ components:
           type: string
         mensagem:
           type: string
+    CreateClientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+        - name
+        - email
