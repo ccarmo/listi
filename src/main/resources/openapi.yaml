@@ -62,6 +62,19 @@ paths:
       responses:
         '201':
           description: Client created successfully
+    get:
+      summary: List all clients
+      description: Retrieves a list of all clients.
+      operationId: listAllClients
+      responses:
+        '200':
+          description: List of clients retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientRecord'
   /os/{osId}:
     get:
       summary: Detalhar uma OS
@@ -275,6 +288,18 @@ components:
         name:
           type: string
         email:
+          type: string
+      required:
+        - name
+        - email
+    ClientRecord:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
           type: string
       required:
         - name

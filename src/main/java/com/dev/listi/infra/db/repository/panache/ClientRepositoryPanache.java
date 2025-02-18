@@ -1,14 +1,21 @@
 package com.dev.listi.infra.db.repository.panache;
 
+import com.dev.listi.domain.entities.User;
 import com.dev.listi.infra.db.model.ClientModel;
+import com.dev.listi.infra.db.model.UserModel;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
 public class ClientRepositoryPanache implements PanacheRepository<ClientModel> {
+
+    @Inject
+    UserRepositoryPanache userRepository;
 
     public Optional<ClientModel> findByName(String name) {
         return find("name", name).firstResultOptional();
@@ -63,4 +70,15 @@ public class ClientRepositoryPanache implements PanacheRepository<ClientModel> {
         }
         return Optional.empty();
     }
+
+    public List<ClientModel> findByUser(String userEmail) {
+        Optional<UserModel> userModel = userRepository.findByEmail(userEmail);
+        if (userModel.isPresent()) {
+            return list("userModel.id", userModel.get().getId());
+        }
+        return new ArrayList<>();
+    }
+
+
+
 }

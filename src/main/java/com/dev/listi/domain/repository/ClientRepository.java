@@ -13,6 +13,7 @@ public interface ClientRepository {
     List<Client> findAll();
     void delete(Long id);
     Optional<Client> update(Client client);
+    List<Client> findByUser(String userEmail);
 
     // Métodos adicionais
     Optional<Client> deleteClient(Long id);

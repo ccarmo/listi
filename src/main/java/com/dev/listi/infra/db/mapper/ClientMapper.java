@@ -1,5 +1,6 @@
 package com.dev.listi.infra.db.mapper;
 
+import com.dev.listi.app.dto.ClientRecord;
 import com.dev.listi.app.dto.CreateClientRequest;
 import com.dev.listi.domain.entities.Client;
 import com.dev.listi.domain.vo.Email;
@@ -22,6 +23,10 @@ public interface ClientMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "email", target = "email", qualifiedByName = "mapStringToEmail")
     Client createClientRequestToClient(CreateClientRequest createClientRequest);
+
+    @Mapping(source = "client.name", target = "name")
+    @Mapping(source = "client.email", target = "email", qualifiedByName = "mapEmailToString")
+    ClientRecord clientToClientDTO(Client client);
 
     @Named("mapStringToEmail")
     default Email mapStringToEmail(String email) {

@@ -79,4 +79,13 @@ public class ClientRepository implements com.dev.listi.domain.repository.ClientR
     public Optional<ClientModel> findByEmail(String email) {
         return clientRepositoryPanache.findByEmail(email);
     }
+
+    @Override
+    public List<Client> findByUser(String userEmail) {
+        return clientRepositoryPanache.findByUser(userEmail).stream()
+                .map(clientMapper::clientModelToClient)
+                .collect(Collectors.toList());
+    }
+
+
 }

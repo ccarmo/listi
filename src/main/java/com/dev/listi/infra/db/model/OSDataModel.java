@@ -13,11 +13,11 @@ public class OSDataModel {
 
     private String code;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private ClientModel client;
 
