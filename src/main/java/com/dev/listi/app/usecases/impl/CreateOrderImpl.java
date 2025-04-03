@@ -11,7 +11,7 @@ import com.dev.listi.domain.repository.OrdemServiceRepository;
 import java.util.Optional;
 
 import com.dev.listi.domain.repository.UserRepository;
-import com.dev.listi.domain.vo.Email;
+
 import com.dev.listi.infra.db.mapper.OrderMapper;
 import com.dev.listi.infra.db.model.ClientModel;
 import com.dev.listi.infra.db.model.UserModel;
@@ -37,10 +37,21 @@ public class CreateOrderImpl implements CreateOrder {
     @Override
     @Transactional
     public Optional<Order> execute(CreateOSRequest createOSRequest) {
+
         Order order = orderMapper.createOSRequestToOrder(createOSRequest);
-        UserModel userModel = userRepository.getUserById(String.valueOf(createOSRequest.idUser())).get();
-        ClientModel clientModel = clientRepository.findById(Long.valueOf(createOSRequest.idClient())).get();
-        orderRepository.createOrder(order, userModel,  clientModel);
+        Optional<UserModel> userModel = userRepository.getUserById(String.valueOf(createOSRequest.idUser()));
+        Optional<ClientModel> clientModel = clientRepository.findById(Long.valueOf(createOSRequest.idClient()));
+
+        if (userModel.isEmpty()) {
+            throw new RuntimeException("Usuario nao existe");
+        }
+
+        if (clientModel.isEmpty()) {
+            throw new RuntimeException("Cliente nao existe");
+        }
+
+        orderRepository.createOrder(order, userModel.get(),  clientModel.get());
+
         return Optional.of(order);
     }
 }

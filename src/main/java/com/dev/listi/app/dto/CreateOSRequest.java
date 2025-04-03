@@ -9,7 +9,7 @@ public record CreateOSRequest(
     @JsonProperty("idCliente") Integer idClient,
 
     @Schema(description = "ID do cliente.", example = "1")
-    @JsonProperty("idUser") Integer idUser,
+    @JsonProperty("idUsuario") Integer idUser,
 
     @Schema(description = "Descrição da ordem de serviço.", example = "Manutenção do equipamento X.")
     @JsonProperty("descricao") String description,
