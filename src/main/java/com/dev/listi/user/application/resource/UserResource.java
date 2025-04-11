@@ -3,6 +3,7 @@ package com.dev.listi.user.application.resource;
 import com.dev.listi.user.application.dto.UserRecord;
 import com.dev.listi.user.application.usecase.CreateUserUseCase;
 import com.dev.listi.user.application.usecase.GetUserUseCase;
+import com.dev.listi.auth.Secured;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @Path("/users")
+
 public class UserResource {
 
     private static final Logger logger = Logger.getLogger(UserResource.class.getName());
@@ -25,6 +27,7 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public Response create(@QueryParam("name") String name) {
         logger.info("Received request to create user with name: " + name);
         Optional<UserRecord> userRecord = createUserUseCase.createUser(name);
