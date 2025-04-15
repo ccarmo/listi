@@ -5,10 +5,15 @@ public class ContactNumber {
 
     private String contactNumber;
 
-    public ContactNumber(String ContactNumber) {
+    public ContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
-    private void isValidContactNumber(String contactNumber) {
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    private void isValidContactNumber(String contactNumber) {
+        // TODO: Implementar validação do número de telefone
     }
 }

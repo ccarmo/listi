@@ -11,7 +11,7 @@ public interface UserRepository {
 
     Optional<UserModel> getUserById(String idUser);
 
-    Optional<UserModel> createUser(String name);
+    Optional<UserModel> createUser(String name, String phone, String email);
 
     Optional<UserModel> findByEmail(String email);
 
@@ -24,5 +24,7 @@ public interface UserRepository {
     Optional<UserModel> listUser(String idUser);
 
     Optional<UserModel> listUserByName(String name);
+
+    Optional<UserModel> findByPhone(String phone);
 
 }

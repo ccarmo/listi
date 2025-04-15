@@ -46,4 +46,9 @@ public class GetUserUseCaseImpl implements GetUserUseCase {
             return userModel;
         }
     }
+
+    @Override
+    public Optional<UserModel> findUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhone(phoneNumber);
+    }
 }

@@ -1,6 +1,7 @@
 package com.dev.listi.user.infra.db.repository;
 
 import com.dev.listi.user.core.entities.User;
+import com.dev.listi.shared.core.vo.ContactNumber;
 import com.dev.listi.shared.core.vo.Email;
 import com.dev.listi.user.infra.db.mapper.UserMapper;
 import com.dev.listi.user.infra.db.model.UserModel;
@@ -36,9 +37,10 @@ public class UserRepository implements com.dev.listi.user.core.repository.UserRe
 
     @Override
     @Transactional
-    public Optional<UserModel> createUser(String name) {
-        Email email = new Email("teste@teste.com");
-        User user = new User(name, email);
+    public Optional<UserModel> createUser(String name, String phone, String email) {
+        Email emailObj = new Email(email);
+        ContactNumber phoneObj = new ContactNumber(phone);
+        User user = new User(name, emailObj, phoneObj);
         UserModel userModel = userMapper.userToUserModel(user);
         userRepositoryPanache.persist(userModel);
         return Optional.of(userModel);
@@ -73,5 +75,10 @@ public class UserRepository implements com.dev.listi.user.core.repository.UserRe
     @Override
     public Optional<UserModel> listUserByName(String name) {
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<UserModel> findByPhone(String phone) {
+        return userRepositoryPanache.find("phone", phone).firstResultOptional();
     }
 }

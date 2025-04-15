@@ -10,6 +10,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.Optional;
+
 @ApplicationScoped
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
@@ -20,8 +21,8 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     UserMapper userMapper;
 
     @Override
-    public Optional<UserRecord> createUser(String name) {
-        Optional<UserModel> userModel = userRepository.createUser(name);
+    public Optional<UserRecord> createUser(String name, String phone, String email) {
+        Optional<UserModel> userModel = userRepository.createUser(name, phone, email);
         User user = userMapper.userModelToUser(userModel.get());
         UserRecord userRecord = userMapper.userToUserDTO(user);
         return Optional.of(userRecord);

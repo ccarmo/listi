@@ -50,9 +50,11 @@ public class JwtAuthenticationFilter implements ContainerRequestFilter {
 
             String phone = claims.getSubject();
             String role = claims.get("role", String.class);
+          
 
             requestContext.setProperty("phoneNumber", phone);
             requestContext.setProperty("role", role);
+  
 
         } catch (JwtException e) {
             requestContext.abortWith(Response.status(401).entity("Token JWT inválido ou expirado").build());

@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import com.dev.listi.auth.Secured;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ClientResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Secured
     public Response createClient(CreateClientRequest createClientRequest) {
         createClientUseCase.createClient(createClientRequest);
         return Response.status(Response.Status.CREATED).build();
@@ -33,6 +35,7 @@ public class ClientResource {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Secured
     public Response listAllClients() {
         String email = "teste@teste.com";
         List<ClientRecord> clientRecordList = getClientUseCase.listAllClients(email);

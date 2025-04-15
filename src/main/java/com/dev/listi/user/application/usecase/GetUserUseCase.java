@@ -11,4 +11,5 @@ public interface GetUserUseCase {
 
     Optional<UserRecord> getUser(String idUser);
     Optional<UserModel> getUserModel(String idUser);
+    Optional<UserModel> findUserByPhoneNumber(String phoneNumber);
 }

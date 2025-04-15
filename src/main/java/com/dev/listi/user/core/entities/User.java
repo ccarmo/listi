@@ -1,7 +1,7 @@
 package com.dev.listi.user.core.entities;
 
-
 import com.dev.listi.shared.core.vo.Email;
+import com.dev.listi.shared.core.vo.ContactNumber;
 
 import java.util.UUID;
 
@@ -12,6 +12,7 @@ public class User  {
     private String name;
 
     private Email email;
+    private ContactNumber phone;
 
 
 
@@ -19,10 +20,11 @@ public class User  {
     private Address address;
      **/
 
-    public User (String name, Email email) {
+    public User (String name, Email email, ContactNumber phone) {
         this.idUser   = UUID.randomUUID().toString();
         this.name     = name;
         this.email    = email;
+        this.phone    = phone;
     }
 
     public String getName() {
@@ -35,11 +37,17 @@ public class User  {
         return email;
     }
 
+    public ContactNumber getPhone() {
+        return phone;
+    }
+
     public void setEmail(Email email) {
         this.email = email;
     }
 
-
+    public void setPhone(ContactNumber phone) {
+        this.phone = phone;
+    }
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;

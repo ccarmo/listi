@@ -22,18 +22,14 @@ public class ClientRepository implements com.dev.listi.clients.core.repository.C
     ClientRepositoryPanache clientRepositoryPanache;
 
     @Inject
-    UserRepository userRepository;
-
-    @Inject
     ClientMapper clientMapper;
 
     @Override
     @Transactional
-    public void save(Client client, User user) {
+    public void save(Client client, UserModel userModel) {
 
-        Optional<UserModel> userModel = userRepository.findByEmail(user.getEmail().getEmail());
         ClientModel clientModel = clientMapper.clientToClientModel(client);
-        clientModel.setUserModel(userModel.get());
+        clientModel.setUserModel(userModel);
         clientRepositoryPanache.createClient(clientModel);
 
     }
@@ -82,11 +78,16 @@ public class ClientRepository implements com.dev.listi.clients.core.repository.C
     }
 
     @Override
+    public Optional<Client> findByPhone(String phone) {
+        return clientRepositoryPanache.find("phone", phone).firstResultOptional()
+                .map(clientMapper::clientModelToClient);
+    }
+
+    @Override
     public List<Client> findByUser(String userEmail) {
         return clientRepositoryPanache.findByUser(userEmail).stream()
                 .map(clientMapper::clientModelToClient)
                 .collect(Collectors.toList());
     }
-
 
 }

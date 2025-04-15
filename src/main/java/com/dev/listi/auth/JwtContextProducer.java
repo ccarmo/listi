@@ -23,4 +23,5 @@ public class JwtContextProducer {
     public String produceRole() {
         return (String) context.getProperty("role");
     }
+
 }
